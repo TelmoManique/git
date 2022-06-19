@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    tools:context=".Status">
+
+    <!-- res/layout/fragment_general_status-->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view_status"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeightInfo" />
+
+    <Button
+        android:id="@+id/buttonUpdateInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/updatePersonal_textView"
+        android:onClick="onUpdateInfo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonMoreStat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="onMoreStats"
+        android:text="@string/moreStats_textView"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
+        app:layout_constraintEnd_toStartOf="@+id/buttonGeneralInfo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/fragment_container_view_status"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/buttonGeneralInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="General Info"
+        android:onClick="onGeneralInfo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
+        app:layout_constraintEnd_toStartOf="@+id/buttonWeightProg"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonMoreStat"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/buttonWeightProg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:onClick="onWeight"
+        android:text="Weight Progression"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_container_view_status"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonGeneralInfo"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/textViewWeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/weight_textView"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHeight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewWeightInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/textViewWeight"
+        app:layout_constraintStart_toStartOf="@+id/textViewWeight"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
+
+    <TextView
+        android:id="@+id/textViewHeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/height_textView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewWeight"
+        app:layout_constraintEnd_toStartOf="@+id/textViewBMI"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewWeight" />
+
+    <TextView
+        android:id="@+id/textViewHeightInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/textViewHeight"
+        app:layout_constraintStart_toStartOf="@+id/textViewHeight"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
+
+    <TextView
+        android:id="@+id/textViewBMI"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/bmi_textview"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewHeight" />
+
+    <TextView
+        android:id="@+id/textViewBMIInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/textViewBMI"
+        app:layout_constraintStart_toStartOf="@+id/textViewBMI"
+        app:layout_constraintTop_toTopOf="@+id/textViewBMI" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

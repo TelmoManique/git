@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "688817483049",
+    "project_id": "fitnessexercisetraquing",
+    "storage_bucket": "fitnessexercisetraquing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688817483049:android:f2c480a324d211f64f5b38",
+        "android_client_info": {
+          "package_name": "com.miniprojeto.telmomanique.fitnessexercisetracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688817483049-6o5vesp1nvtjacgo8gg52ljm615aqma7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzOaaNz4fN9Dzlj4scrqB8Ui3Ceq9Ob0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688817483049-6o5vesp1nvtjacgo8gg52ljm615aqma7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

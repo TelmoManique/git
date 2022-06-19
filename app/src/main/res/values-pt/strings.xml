@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fitness&amp;ExerciseTracking</string>
+    <string name="login_button">Entrar</string>
+    <string name="login_textView">Email</string>
+    <string name="password_textView">Senha</string>
+    <string name="register_textView">Criar nova conta</string>
+    <string name="title_activity_login">something</string>
+    <string name="passwordConfirmation_textView">Confirmação Senha</string>
+    <string name="register_button">Criar</string>
+    <string name="logout_button">Sair</string>
+    <string name="exList_button">Lista de Exercicios</string>
+    <string name="status_button">Informação Pessoais</string>
+    <string name="goals_button">Objetivos</string>
+    <string name="newRoutine_button">Rotina nova</string>
+    <string name="myRoutines_button">As minhas routinas</string>
+    <string name="email_textView">Email</string>
+    <string name="weight_textView">Peso</string>
+    <string name="height_textView">Altura</string>
+    <string name="bmi_textview">IMC</string>
+    <string name="totalWeight_textView">"Peso Total Levantado (Kg): "</string>
+    <string name="totalTime_textView">Total de Tempo de Exercicio (m):</string>
+    <string name="lastExercised_textView">"Ultima Vez Exercitado: "</string>
+    <string name="updatePersonal_textView">Atualizar Dados Pessoais</string>
+    <string name="moreStats_textView">Mais Estatisticas</string>
+    <string name="updateStatus_button">Atualizar Dados</string>
+</resources>
