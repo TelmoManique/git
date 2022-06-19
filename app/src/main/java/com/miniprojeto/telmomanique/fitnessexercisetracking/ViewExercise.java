@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Exercise;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
@@ -34,10 +35,19 @@ public class ViewExercise extends AppCompatActivity {
             startActivity(loginPage);
             return;
         }
+        e = new Exercise();
+        e.setName( getIntent().getStringExtra("name").toString());
+        e.setMuscleGroup( getIntent().getStringExtra("muscleGroup"));
+        e.setExerciseType( getIntent().getStringExtra("type"));
+        e.setImage(getIntent().getStringExtra("image"));
+        Log.d(TAG, "onStart: " + e.getName());
 
-        e = getIntent().getParcelableExtra("exercise");
-        Log.d(TAG, "onStart: ");
+        TextView namView = findViewById(R.id.textViewName);
+        TextView muscleView = findViewById(R.id.textViewMuscleExercisedInfo);
+        TextView typeView = findViewById(R.id.textViewTypeInfo);
 
-        ole
+        namView.setText(e.getName());
+        muscleView.setText(e.getMuscleGroup());
+        typeView.setText(e.getExerciseType());
     }
 }

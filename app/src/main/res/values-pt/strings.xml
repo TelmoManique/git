@@ -24,4 +24,6 @@
     <string name="updatePersonal_textView">Atualizar Dados Pessoais</string>
     <string name="moreStats_textView">Mais Estatisticas</string>
     <string name="updateStatus_button">Atualizar Dados</string>
+    <string name="exercerciseType_textView">Tipo de Exercisio</string>
+    <string name="exerciseMuscle_textView">Grupo de Musculos Exercitados</string>
 </resources>

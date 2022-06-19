@@ -96,7 +96,10 @@ public class ExerciseList extends AppCompatActivity implements ExerciseListRecyc
         //TODO CREATE ViewExercise CLASS
 
         Intent intent = new Intent(this, ViewExercise.class);
-        intent.putExtra( "exercise" , (Parcelable) e);
+        intent.putExtra ("name" , e.getName());
+        intent.putExtra ("muscleGroup" , e.getMuscleGroup());
+        intent.putExtra ("type" , e.getExerciseType());
+        intent.putExtra ("image" , e.getImage());
         startActivity(intent);
 
     }// END onExerciseClick()
