@@ -37,5 +37,7 @@ public class ViewExercise extends AppCompatActivity {
 
         e = getIntent().getParcelableExtra("exercise");
         Log.d(TAG, "onStart: ");
+
+        ole
     }
 }
