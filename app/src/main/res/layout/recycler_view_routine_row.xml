@@ -80,7 +80,6 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewRoutineMuscleFocus" />
             <TextView
@@ -94,6 +93,31 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/textViewRoutineExeType"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textViewRoutineExeType" />
+
+            <TextView
+                android:id="@+id/textViewRoutineLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/streetName_textView"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRoutineExeType" />
+            <TextView
+                android:id="@+id/textViewRoutineLocationInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Street name that is long"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewRoutineLocation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewRoutineLocation" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

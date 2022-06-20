@@ -3,6 +3,8 @@ package com.miniprojeto.telmomanique.fitnessexercisetracking.objects;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Routine {
     private User user;
@@ -43,5 +45,41 @@ public class Routine {
 
     public Collection<Exercise> getExercises(){
         return  Collections.unmodifiableList( exercises );
+    }
+
+    public String getMostExercised(){
+        Map<String , Integer> muscleMap = new HashMap<>();
+        for( Exercise e : exercises ){
+            String muscleString = e.getMuscleGroup();
+            muscleMap.put( muscleString , muscleMap.get(muscleString)+1 );
+        }
+
+        String muscle = "Empty";
+        int x = -1;
+        for (Map.Entry<String, Integer> entry : muscleMap.entrySet()) {
+            if( entry.getValue() > x ){
+                muscle = entry.getKey();
+                x = entry.getValue();
+            }
+        }
+        return muscle;
+    }
+
+    public String getMostType(){
+        Map<String , Integer> typeMap = new HashMap<>();
+        for( Exercise e : exercises ){
+            String typeString = e.getExerciseType();
+            typeMap.put( typeString , typeMap.get(typeString)+1 );
+        }
+
+        String type = "Empty";
+        int x = -1;
+        for (Map.Entry<String, Integer> entry : typeMap.entrySet()) {
+            if( entry.getValue() > x ){
+                type = entry.getKey();
+                x = entry.getValue();
+            }
+        }
+        return type;
     }
 }
