@@ -28,4 +28,6 @@
     <string name="exerciseMuscle_textView">Grupo de Musculos Exercitados</string>
     <string name="rep_textView">Nº de Repetições</string>
     <string name="time_textView">Tempo de Exercisio</string>
+    <string name="generalInfo_textView">Informações Gerais</string>
+    <string name="weightProg_textView">Progreção de Peso</string>
 </resources>

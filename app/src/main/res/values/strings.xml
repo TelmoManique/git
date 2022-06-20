@@ -27,4 +27,6 @@
     <string name="exerciseMuscle_textView">Muscle Being Exercised</string>
     <string name="rep_textView">Number of Reps</string>
     <string name="time_textView">Exercise Time</string>
+    <string name="generalInfo_textView">General Info</string>
+    <string name="weightProg_textView">Weight Progression</string>
 </resources>
