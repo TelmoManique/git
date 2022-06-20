@@ -2,6 +2,8 @@ package com.miniprojeto.telmomanique.fitnessexercisetracking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +17,13 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Exercise;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Routine;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseListRecyclerViewAdapter;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.RoutineListRecyclerViewAndapter;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.RoutineListRecyclerViewInterface;
 
 import java.util.ArrayList;
 
-public class MyRoutines extends AppCompatActivity {
+public class MyRoutines extends AppCompatActivity implements RoutineListRecyclerViewInterface {
     private String TAG = "DEBUG_MYROUTINES";
 
     private Firebase firebase;
@@ -97,6 +102,28 @@ public class MyRoutines extends AppCompatActivity {
         }
     } // END parseRoutines()
 
+    private void setUpView(){
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewRoutineList);
+
+        RoutineListRecyclerViewAndapter adapter = new RoutineListRecyclerViewAndapter( this, routines , this);
+
+        recyclerView.setAdapter( adapter );
+        recyclerView.setLayoutManager( new LinearLayoutManager( this ));
+        Log.d(TAG, "recyclerView");
+    }
+
+    @Override
+    public void onRoutineClick(int position) {
+        Routine r = routines.get(position);
+        Log.d(TAG, "onExerciseClick: " + r.getDate());
+
+        //TODO CREATE ViewRoutine
+        //PASS THE FULL OBJECT
+        /*Intent intent = new Intent(this, ViewExercise.class);
+        startActivity(intent);
+         */
+    }
+
     private void addRoutine( Routine r ){
         this.routines.add( r );
 
@@ -109,4 +136,6 @@ public class MyRoutines extends AppCompatActivity {
         }
         //TODO ADD ROUTINE TO SCREEN
     } // END addRoutine()
+
+
 }

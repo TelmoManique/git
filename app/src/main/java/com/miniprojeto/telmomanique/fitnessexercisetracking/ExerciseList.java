@@ -23,7 +23,6 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseLi
 import java.util.ArrayList;
 
 public class ExerciseList extends AppCompatActivity implements ExerciseListRecyclerViewInterface {
-    //TODO https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb POSSIBLE API
     private String TAG = "DEBUG_EXERCISELIST";
     private Firebase firebase;
     private User u;
@@ -97,8 +96,6 @@ public class ExerciseList extends AppCompatActivity implements ExerciseListRecyc
     public void onExerciseClick(int position) {
         Exercise e = exercises.get(position);
         Log.d(TAG, "onExerciseClick: " + e.getName());
-
-        //TODO CREATE ViewExercise CLASS
 
         Intent intent = new Intent(this, ViewExercise.class);
         intent.putExtra ("name" , e.getName());

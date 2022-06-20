@@ -22,6 +22,7 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
 
 //TODO FIX FRAMEACTIVITY BACK BUTTON
+//TODO ADD MORE STATS
 public class Status extends AppCompatActivity {
     private String TAG = "DEBUG_STATUS";
 
