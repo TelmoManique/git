@@ -56,4 +56,7 @@ dependencies {
 
     //GRAPH
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //GIF FETCH
+    implementation "com.felipecsl:gifimageview:2.1.0"
 }
