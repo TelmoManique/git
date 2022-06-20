@@ -3,13 +3,23 @@ package com.miniprojeto.telmomanique.fitnessexercisetracking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Exercise;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ViewExercise extends AppCompatActivity {
     private String TAG = "DEBUG_VIEWEXERCISE";
@@ -49,5 +59,7 @@ public class ViewExercise extends AppCompatActivity {
         namView.setText(e.getName());
         muscleView.setText(e.getMuscleGroup());
         typeView.setText(e.getExerciseType());
+
+        Log.d(TAG, "onStart: " + e.getImage());
     }
 }

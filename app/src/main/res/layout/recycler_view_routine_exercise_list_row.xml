@@ -47,7 +47,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewExerciseName" />
 
-            <EditText
+            <TextView
                 android:id="@+id/textViewRepsInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textViewReps"
                 app:layout_constraintTop_toTopOf="@+id/textViewReps" />
-            <EditText
+            <TextView
                 android:id="@+id/textViewWeightInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textViewWeight"
                 app:layout_constraintTop_toTopOf="@+id/textViewReps" />
-            <EditText
+            <TextView
                 android:id="@+id/textViewTimeInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
