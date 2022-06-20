@@ -64,15 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMuscleExercised" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="293dp" />
-
-    <!--
-    <ImageView
+    <com.felipecsl.gifimageview.library.GifImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -80,7 +72,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
-        -->
+        app:layout_constraintTop_toBottomOf="@+id/textViewMuscleExercisedInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
