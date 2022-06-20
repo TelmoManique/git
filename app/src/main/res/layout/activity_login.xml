@@ -13,6 +13,8 @@
         android:layout_marginBottom="38dp"
         android:text="@string/login_button"
         android:onClick="onLogin"
+        android:background="@drawable/button_main"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textViewRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

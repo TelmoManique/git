@@ -10,25 +10,26 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:textColor="@color/white"
+        android:layout_margin="8dp"
         android:background="@drawable/button_main"
         android:onClick="onLogout"
         android:text="@string/logout_button"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+        android:textColor="@color/light_matcha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
         android:text="TextView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/button" />
 
     <ImageView
         android:id="@+id/imageView"
