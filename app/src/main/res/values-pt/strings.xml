@@ -26,4 +26,6 @@
     <string name="updateStatus_button">Atualizar Dados</string>
     <string name="exercerciseType_textView">Tipo de Exercisio</string>
     <string name="exerciseMuscle_textView">Grupo de Musculos Exercitados</string>
+    <string name="rep_textView">Nº de Repetições</string>
+    <string name="time_textView">Tempo de Exercisio</string>
 </resources>

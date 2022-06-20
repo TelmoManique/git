@@ -25,4 +25,6 @@
     <string name="updateStatus_button">Update Status</string>
     <string name="exercerciseType_textView">Exercise type</string>
     <string name="exerciseMuscle_textView">Muscle Being Exercised</string>
+    <string name="rep_textView">Number of Reps</string>
+    <string name="time_textView">Exercise Time</string>
 </resources>
