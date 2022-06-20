@@ -36,6 +36,7 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         setContentView(R.layout.activity_my_routines);
 
         firebase = Firebase.getInstance();
+        getAllRoutines();
     }
 
     @Override
@@ -50,7 +51,7 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         }
 
         u = firebase.getUser();
-        getAllRoutines();
+        setUpView();
     }
 
     private void getAllRoutines(){
@@ -66,7 +67,9 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
                                 routines.add( document );
                                 Log.d(TAG, "" + document.getId());
                             }
+                            //TODO ADD LOCATION
                             parseRoutines( routines );
+
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -110,7 +113,7 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         recyclerView.setAdapter( adapter );
         recyclerView.setLayoutManager( new LinearLayoutManager( this ));
         Log.d(TAG, "recyclerView");
-    }
+    } // END setUpView()
 
     @Override
     public void onRoutineClick(int position) {
@@ -123,6 +126,8 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         startActivity(intent);
          */
     }
+
+
 
     private void addRoutine( Routine r ){
         this.routines.add( r );
