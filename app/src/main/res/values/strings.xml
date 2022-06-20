@@ -29,4 +29,8 @@
     <string name="time_textView">Exercise Time</string>
     <string name="generalInfo_textView">General Info</string>
     <string name="weightProg_textView">Weight Progression</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="routDay_textView">Date:</string>
+    <string name="routMuscle_textView">Muscle Targeted:</string>
 </resources>
