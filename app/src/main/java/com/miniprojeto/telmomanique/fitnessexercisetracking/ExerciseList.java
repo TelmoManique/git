@@ -38,8 +38,11 @@ public class ExerciseList extends AppCompatActivity implements ExerciseListRecyc
         // Initialize Firebase Auth
         firebase = Firebase.getInstance();
 
-        //Used to  read file, clean sanitize information, set up dataBase from file
-        //setUpListExercises();
+        //Used to  read file, clean sanitize information, set up dataBase from file assets/textFile.txt
+        //The only reason this part of the code exists is to show how the DB was made
+        //new TreatFileToDb().chooseFile(getAssets());
+
+        setUpListExercises();
     }
 
     @Override
@@ -52,9 +55,8 @@ public class ExerciseList extends AppCompatActivity implements ExerciseListRecyc
             startActivity(loginPage);
             return;
         }
+        
         u = firebase.getUser();
-
-        new TreatFileToDb().chooseFile(getAssets());
     } // END onStart()
 
     private void setUpListExercises(){

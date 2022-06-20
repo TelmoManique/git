@@ -1,5 +1,4 @@
-Exercise,Equipment,Exercise Type,Major Muscle,Minor Muscle,Example,Notes,Modifications
-Arnold Press,Dumbbells,Weight,Arms,Bicep,asd (https://dl.airtable.com/FvaObZ1SyqwBU12Wx4K7_giphy-2.gif),,
+Arnold Press,Dumbbells,Weight,Arms,"Bicep,Shoulders",giphy-2.gif (https://dl.airtable.com/FvaObZ1SyqwBU12Wx4K7_giphy-2.gif),,
 Bicep Curl,"Bar,Dumbbells,Cable","Weight,Machine",Arms,Bicep,3e8b7121-738e-4457-b6d8-fd3a3e04de5a.gif (https://dl.airtable.com/Pld28NJDTyeYLcaJV7hQ_3e8b7121-738e-4457-b6d8-fd3a3e04de5a.gif),Don't use momentum. Make sure the movement is coming from the bottom half of your arm not your shoulder moving the weight.,
 Bicycle Crunch,Body Weight,Weight,Core,,200.gif (https://dl.airtable.com/Y0JUbM2YTfe8uRz0jb5w_200.gif),"The lower the ""straight"" leg is to the ground the more challenging this exercise is. ","Easier: Move Slower, Legs higher in the air
 Harder: Keep shoulder blades off the ground entire time"

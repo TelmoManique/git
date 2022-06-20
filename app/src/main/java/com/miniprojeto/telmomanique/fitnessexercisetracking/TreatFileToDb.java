@@ -21,8 +21,23 @@ public class TreatFileToDb {
 
     private Firebase firebase = Firebase.getInstance();
     private String txtPath = "textFile.txt";
+    private Map<String, String> exceptions = new HashMap<>();
 
     public void chooseFile(AssetManager assets) {
+
+        exceptions.put( "Calf Raise" , "https://qph.cf2.quoracdn.net/main-qimg-b298f115722e37446250d8eac5a656d2" );
+        exceptions.put( "Deficit Squat" , "https://www.boostupfitness.com/wp-content/uploads/2020/12/deficit-deadlift.gif" );
+        exceptions.put( "Goblet Squat", "https://177d01fbswx3jjl1t20gdr8j-wpengine.netdna-ssl.com/wp-content/uploads/2019/05/DB-Goblet-Squat-opt.gif" );
+        exceptions.put( "Leg Raise", "https://www.byrdie.com/thmb/zQQn6n8nysIXsBMIEy9Z4L2FOgA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/leglifts-1584ae42d00d499fbd5d80a799563069.gif" );
+        exceptions.put( "Plank", "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a8048480486129.5ce2e67ba3247.gif" );
+        exceptions.put( "Side Plank", "https://177d01fbswx3jjl1t20gdr8j-wpengine.netdna-ssl.com/wp-content/uploads/2019/06/Side-Plank-Hip-Dips.gif" );
+        exceptions.put( "Situp and Throw", "https://assets.myworkouts.io/exercises-media/xszEm92uvgvmxMeZv/medicine_ball_chest_throw_sit-up_(on_wall)_female_v3_gif_capoff.gif" );
+        exceptions.put( "Standing Leg Lift", "https://goefem.com/wp-content/uploads/2021/11/1_Proy7WDS3P3Ji-ZSUMuBKg-1.gif" );
+        exceptions.put( "Straightup Situp", "https://jensinkler.com/wp-content/uploads/2019/06/Bodyweight-Straight-Legged-Sit-Up.gif" );
+        exceptions.put( "Superman", "https://177d01fbswx3jjl1t20gdr8j-wpengine.netdna-ssl.com/wp-content/uploads/2019/06/Superman-Swims-1.gif" );
+        exceptions.put( "Tricep Kick-Back", "https://cdn.shopify.com/s/files/1/0250/0362/2496/files/393.gif?v=1644657822" );
+        exceptions.put( "Weighted Jumping Jacks", "https://media1.popsugar-assets.com/files/thumbor/8msgpY2pOl_UquCk7JtjI3LTYcg/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2020/08/26/840/n/1922729/259ba519347128d9_WEIGHTED_JUMPING_JACKS/i/Move-3-Weighted-Jumping-Jacks.GIF" );
+
         ArrayList<Exercise> exercises = new ArrayList<Exercise>();
         BufferedReader reader = null;
         try {
@@ -69,7 +84,10 @@ public class TreatFileToDb {
                 e.setName( infos[0] );
                 e.setExerciseType( infos[2] );
                 e.setMuscleGroup( infos[3] );
-                e.setImage( infos[5] );
+                if(exceptions.containsKey( e.getName()))
+                    e.setImage(exceptions.get(e.getName()));
+                else
+                    e.setImage( infos[5] );
                 exercises.add( e );
 
                /* Log.d( "DEBUG_R" , "" + i);
