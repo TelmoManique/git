@@ -35,9 +35,9 @@ public class ExerciseInRoutineRecyclerViewAdapter extends RecyclerView.Adapter<E
     @Override
     public void onBindViewHolder(@NonNull ExerciseInRoutineRecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.nameView.setText(exerciseList.get(position).getName());
-        holder.repView.setText(exerciseList.get(position).getReps());
-        holder.weightView.setText(exerciseList.get(position).getWeight());
-        holder.timeView.setText(exerciseList.get(position).getTime());
+        holder.repView.setText(exerciseList.get(position).getReps() + "");
+        holder.weightView.setText(exerciseList.get(position).getWeight()+ "");
+        holder.timeView.setText(exerciseList.get(position).getTime() +"");
     }
 
     @Override

@@ -43,8 +43,8 @@ public class Routine {
         return this.location;
     }
 
-    public Collection<Exercise> getExercises(){
-        return  Collections.unmodifiableList( exercises );
+    public ArrayList<Exercise> getExercises(){
+        return  exercises;
     }
 
     public String getMostExercised(){
@@ -81,5 +81,9 @@ public class Routine {
             }
         }
         return type;
+    }
+
+    public void removeExercise(int pos) {
+        exercises.remove( pos );
     }
 }

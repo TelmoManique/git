@@ -59,7 +59,7 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     private Firebase firebase;
     private User u = new User();
     private Routine r = new Routine();
-    private ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+    private ArrayList<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,9 +139,9 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     }
 
     private void setUpView(){
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewExerciseList);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        ExerciseInRoutineRecyclerViewAdapter adapter = new ExerciseInRoutineRecyclerViewAdapter( this, exercises , this);
+        ExerciseInRoutineRecyclerViewAdapter adapter = new ExerciseInRoutineRecyclerViewAdapter( this, r.getExercises() , this);
 
         recyclerView.setAdapter( adapter );
         recyclerView.setLayoutManager( new LinearLayoutManager( this ));
@@ -149,7 +149,8 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     } // END setUpView()
     @Override
     public void onExerciseClick(int pos) {
-
+        r.removeExercise( pos );
+        setUpView();
     }
 
     public void onAddExercise( View view ){
@@ -194,8 +195,11 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
         e.setWeight( weight );
         e.setTime( time );
         r.addExercise( e );
+        Log.d(TAG, "onAddExercise: name" + e.getName());
+        Log.d(TAG, "onAddExercise: reps" + e.getReps());
+        Log.d(TAG, "onAddExercise: weight" + e.getWeight());
+        Log.d(TAG, "onAddExercise: time" + e.getTime());
 
-        //TODO Update RecyclerView
 
         repView.setText("");
         weightView.setText("");
