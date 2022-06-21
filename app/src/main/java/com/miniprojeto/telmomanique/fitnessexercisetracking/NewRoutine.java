@@ -134,10 +134,15 @@ public class NewRoutine extends AppCompatActivity {
     }
     public void onAddExercise( View view ){
         EditText repView =  findViewById(R.id.editTextNumberRespsInfo);
-        TextView weightView = findViewById(R.id.editTextNumberWeightInfo);
-        TextView timeView = findViewById(R.id.editTextNumberTextInfo);
-        //TODO SPINNER INFO
-        //
+        EditText weightView = findViewById(R.id.editTextNumberWeightInfo);
+        EditText timeView = findViewById(R.id.editTextNumberTextInfo);
+        Spinner nameSpinner = findViewById(R.id.spinnerName);
+
+        if( nameSpinner.getSelectedItem().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Exercise Name", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if( repView.getText().toString().equals("") ){
             //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Number of Reps", Toast.LENGTH_SHORT).show();
@@ -153,19 +158,18 @@ public class NewRoutine extends AppCompatActivity {
             Toast.makeText(NewRoutine.this, "Invalide Time", Toast.LENGTH_SHORT).show();
             return;
         }
-        String name = ""; //spinner.getText().toString();
+        String name = nameSpinner.getSelectedItem().toString();
         int reps = Integer.parseInt( repView.getText().toString());
         int weight = Integer.parseInt( weightView.getText().toString());
         int time = Integer.parseInt( timeView.getText().toString());
 
-
         if( !checkExerciseExist( name ) ){
-           //TODO ERROR MESSAGE EXERCISE DOSEN'T EXIST
-            //cleanInputViews();
+            Toast.makeText(NewRoutine.this, "Unable to Find Exercise", Toast.LENGTH_SHORT).show();
             return;
         }
+
         Exercise e = new Exercise();
-        //e.setName( name );
+        e.setName( name );
         e.setReps( reps );
         e.setWeight( weight );
         e.setTime( time );
@@ -173,7 +177,10 @@ public class NewRoutine extends AppCompatActivity {
 
         //TODO Update RecyclerView
 
-        //cleanInputViews();
+        repView.setText("");
+        weightView.setText("");
+        timeView.setText("");
+        Toast.makeText(NewRoutine.this, "Exercise Successfully Added", Toast.LENGTH_SHORT).show();
     } // END addExercise()
 
     private boolean checkExerciseExist( String exerciseName ){

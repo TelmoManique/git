@@ -34,4 +34,5 @@
     <string name="routDay_textView">Date:</string>
     <string name="routMuscle_textView">Muscle Targeted:</string>
     <string name="streetName_textView">Street Name</string>
+    <string name="saveRoutine_button">Save Routine</string>
 </resources>
