@@ -14,6 +14,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +36,8 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Routine;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,9 +85,6 @@ public class NewRoutine extends AppCompatActivity {
             iniciarLocalizacao(); //se tiver todas as permissões então pode começar a obter a localização
 
         u = firebase.getUser();
-
-        //TODO ADD buttonAddExercise AND FOLLOWING POP-UP/TEXTBOX
-        addDropListInfo();
     } // END onStart()
 
     //Gets all existing exercises in the DB
@@ -106,8 +102,10 @@ public class NewRoutine extends AppCompatActivity {
                                 e.setImage( document.getString( "image" ) );
                                 e.setMuscleGroup( document.getString( "muscleGroup" ) );
                                 e.setExerciseType( document.getString( "exerciseType" ));
+                                Log.d(TAG, "onComplete: ExName" + e.getName());
+                                exercisesTemp.add( e );
                             }
-                            setExercisesList( exercises );
+                            setExercisesList( exercisesTemp );
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -117,27 +115,50 @@ public class NewRoutine extends AppCompatActivity {
 
     private void setExercisesList( ArrayList<Exercise> exercises ){
         this.exercises = exercises;
+        addDropListInfo();
     }
 
     private void addDropListInfo(){
-        
+        Spinner exeNameSpinner =  findViewById(R.id.spinnerName);
+
+        ArrayList<String > tempEx = new ArrayList<>();
+        for( Exercise e : exercises ){
+            tempEx.add( e.getName() );
+        }
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, tempEx); //selected item will look like a spinner set from XML
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        exeNameSpinner.setAdapter(spinnerArrayAdapter);
     }
-    private void onAddExercise( View view ){
-        TextView repView =  findViewById(R.id.textViewRepsInfo);
-        TextView weightView = findViewById(R.id.textViewWeightInfo);
-        TextView timeView = findViewById(R.id.textViewTimeInfo);
+    public void onAddExercise( View view ){
+        EditText repView =  findViewById(R.id.editTextNumberRespsInfo);
+        TextView weightView = findViewById(R.id.editTextNumberWeightInfo);
+        TextView timeView = findViewById(R.id.editTextNumberTextInfo);
         //TODO SPINNER INFO
         //
-        //String name = spinner.getText().toString();
+        if( repView.getText().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Number of Reps", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( weightView.getText().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Weight", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( timeView.getText().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Time", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String name = ""; //spinner.getText().toString();
         int reps = Integer.parseInt( repView.getText().toString());
         int weight = Integer.parseInt( weightView.getText().toString());
         int time = Integer.parseInt( timeView.getText().toString());
 
-        if( reps <= 0 || weight <0 || time < 0){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
-            //cleanInputViews();
-            //return;
-        }
+
         if( !checkExerciseExist( name ) ){
            //TODO ERROR MESSAGE EXERCISE DOSEN'T EXIST
             //cleanInputViews();
@@ -176,10 +197,13 @@ public class NewRoutine extends AppCompatActivity {
     } // END onSaveRoutine()
 
     private void addRoutine(){
-        String location = "";
+        String location = localizacaoAtual.getLatitude() + "," + localizacaoAtual.getLongitude();
+        Map<String, Object> locTemp = new HashMap<>();
+        locTemp.put("location", location );
+
         firebase.getRoutinesCollection().document("users").collection( u.getId() )
                 .document( r.getDate())
-                .set( "location" , location  )
+                .set( locTemp )
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
