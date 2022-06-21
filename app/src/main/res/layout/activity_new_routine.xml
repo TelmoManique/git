@@ -141,8 +141,9 @@
         android:layout_marginBottom="8dp"
         android:text="@string/saveRoutine_button"
         android:background="@drawable/button_main"
-
+        android:padding="8dp"
         android:textColor="@color/white"
+        android:onClick="onSaveRoutine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

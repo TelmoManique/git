@@ -138,21 +138,6 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
         exeNameSpinner.setAdapter(spinnerArrayAdapter);
     }
 
-    private void setUpView(){
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
-        ExerciseInRoutineRecyclerViewAdapter adapter = new ExerciseInRoutineRecyclerViewAdapter( this, r.getExercises() , this);
-
-        recyclerView.setAdapter( adapter );
-        recyclerView.setLayoutManager( new LinearLayoutManager( this ));
-        Log.d(TAG, "recyclerView");
-    } // END setUpView()
-    @Override
-    public void onExerciseClick(int pos) {
-        r.removeExercise( pos );
-        setUpView();
-    }
-
     public void onAddExercise( View view ){
         EditText repView =  findViewById(R.id.editTextNumberRespsInfo);
         EditText weightView = findViewById(R.id.editTextNumberWeightInfo);
@@ -220,18 +205,16 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
         r.setUser( u );
         String date = android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss",  Calendar.getInstance().getTime() ).toString() ;
         r.setDate( date );
-        r.setLocation( localizacaoAtual.getLatitude() + ", " +localizacaoAtual.getLongitude());
+        r.setLocation( localizacaoAtual.getLatitude() + "," +localizacaoAtual.getLongitude());
 
         Log.d(TAG , "r.date: " + r.getDate());
         Log.d(TAG , "r.u.id : " + r.getUser().getId());
-        Log.d(TAG , "r.location: " + r.getLocation());
         addRoutine();
     } // END onSaveRoutine()
 
     private void addRoutine(){
-        String location = localizacaoAtual.getLatitude() + "," + localizacaoAtual.getLongitude();
         Map<String, Object> locTemp = new HashMap<>();
-        locTemp.put("location", location );
+        locTemp.put("location", r.getLocation() );
 
         firebase.getRoutinesCollection().document("users").collection( u.getId() )
                 .document( r.getDate())
@@ -252,8 +235,9 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
                         startActivity(myRoutinesPage);
                     }
                 });
-
+        int i = 0;
         for (Exercise e: r.getExercises()) {
+            i++;
             Map<String, Object> exercise = new HashMap<>();
             exercise.put("resp", e.getReps() );
             exercise.put("weight", e.getWeight() );
@@ -262,7 +246,7 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
             firebase.getRoutinesCollection().document("users").collection( u.getId() )
                     .document( r.getDate())
                     .collection("exercises")
-                    .document( e.getName() )
+                    .document( i + "- " +e.getName() )
                     .set( exercise )
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -284,6 +268,21 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
         Intent myRoutinesPage = new Intent( NewRoutine.this, MyRoutines.class);
         startActivity(myRoutinesPage);
     } // END addRoutine()
+
+    private void setUpView(){
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        ExerciseInRoutineRecyclerViewAdapter adapter = new ExerciseInRoutineRecyclerViewAdapter( this, r.getExercises() , this);
+
+        recyclerView.setAdapter( adapter );
+        recyclerView.setLayoutManager( new LinearLayoutManager( this ));
+        Log.d(TAG, "recyclerView");
+    } // END setUpView()
+    @Override
+    public void onExerciseClick(int pos) {
+        r.removeExercise( pos );
+        setUpView();
+    }
 
     /* ________________________LOCATION LOCATION PERMISSIONS_________________________________*/
     private Boolean pedirPermissoesSeNecessario(String[] permissions) {
