@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,7 +36,14 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_routines);
 
-        firebase = Firebase.getInstance();
+        firebase = Firebase.getInstance();if(!firebase.isLoggedIn()){
+            Intent loginPage = new Intent(this, Login.class);
+            startActivity(loginPage);
+            return;
+        }
+
+        u = firebase.getUser();
+
         getAllRoutines();
     }
 
@@ -43,14 +51,6 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
     public void onStart() {
         super.onStart();
 
-        // Check if user is signed in (non-null) and update UI accordingly.
-        if(!firebase.isLoggedIn()){
-            Intent loginPage = new Intent(this, Login.class);
-            startActivity(loginPage);
-            return;
-        }
-
-        u = firebase.getUser();
         setUpView();
     }
 
@@ -127,8 +127,6 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
          */
     }
 
-
-
     private void addRoutine( Routine r ){
         this.routines.add( r );
 
@@ -142,5 +140,9 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         //TODO ADD ROUTINE TO SCREEN
     } // END addRoutine()
 
+    public void onAddRoutine( View view ){
+        Intent newRoutinePage = new Intent(this, NewRoutine.class);
+        startActivity(newRoutinePage);
+    }
 
 }

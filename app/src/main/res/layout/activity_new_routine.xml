@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".NewRoutine">
 
+    <!--
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewNewExercise"
         android:layout_width="0dp"
@@ -14,23 +15,157 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+    -->
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Exercise"
+            android:textColor="@color/green_5"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinnerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="Exercise Name"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAdd" />
+
+        <TextView
+            android:id="@+id/textViewReps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/rep_textView"
+            android:textColor="@color/green_5"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/textViewWeight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerName" />
+
+        <EditText
+            android:id="@+id/editTextNumberRespsInfo"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="10"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="@color/green_3"
+            android:textColorHint="@color/green_5"
+            app:layout_constraintEnd_toEndOf="@+id/textViewReps"
+            app:layout_constraintStart_toStartOf="@+id/textViewReps"
+            app:layout_constraintTop_toBottomOf="@+id/textViewReps" />
+
+        <TextView
+            android:id="@+id/textViewWeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/weight_textView"
+            android:textColor="@color/green_5"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewReps"
+            app:layout_constraintEnd_toStartOf="@+id/textViewTime"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewReps"
+            app:layout_constraintTop_toTopOf="@+id/textViewReps" />
+
+        <EditText
+            android:id="@+id/editTextNumberWeightInfo"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="10"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="@color/green_5"
+            android:textColorHint="@color/green_3"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberRespsInfo"
+            app:layout_constraintEnd_toEndOf="@+id/textViewWeight"
+            app:layout_constraintStart_toStartOf="@+id/textViewWeight"
+            app:layout_constraintTop_toTopOf="@+id/editTextNumberRespsInfo"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/time_textView"
+            android:textColor="@color/green_5"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewReps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewWeight"
+            app:layout_constraintTop_toTopOf="@+id/textViewReps" />
+
+        <EditText
+            android:id="@+id/editTextNumberTextInfo"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="10"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="@color/green_5"
+            android:textColorHint="@color/green_3"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberRespsInfo"
+            app:layout_constraintEnd_toEndOf="@+id/textViewTime"
+            app:layout_constraintStart_toStartOf="@+id/textViewTime"
+            app:layout_constraintTop_toTopOf="@+id/editTextNumberRespsInfo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.30" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/green_5"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
