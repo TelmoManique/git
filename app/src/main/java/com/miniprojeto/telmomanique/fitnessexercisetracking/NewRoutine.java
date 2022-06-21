@@ -342,4 +342,6 @@ public class NewRoutine extends AppCompatActivity {
             localizacaoAtual = location;
         }
     }; // END LocationListener
+
+    //TODO SPINNER SETTER https://www.youtube.com/watch?v=urQp7KsQhW8
 }
