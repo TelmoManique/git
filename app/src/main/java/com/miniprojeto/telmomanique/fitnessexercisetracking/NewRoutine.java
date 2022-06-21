@@ -24,6 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,13 +37,16 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Exercise;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Routine;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseInRoutineRecyclerViewAdapter;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseInRoutineRecyclerViewInterface;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseListRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewRoutine extends AppCompatActivity {
+public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRecyclerViewInterface {
     private String TAG  = "DEBUG_NEWROUTINE";
     private String TAG_PERM = TAG + "_PERMS";
     private String TAG_LOC = TAG + "_LOCATION";
@@ -54,7 +59,7 @@ public class NewRoutine extends AppCompatActivity {
     private Firebase firebase;
     private User u = new User();
     private Routine r = new Routine();
-    private ArrayList<Exercise> exercises;
+    private ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +137,21 @@ public class NewRoutine extends AppCompatActivity {
                 .simple_spinner_dropdown_item);
         exeNameSpinner.setAdapter(spinnerArrayAdapter);
     }
+
+    private void setUpView(){
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewExerciseList);
+
+        ExerciseInRoutineRecyclerViewAdapter adapter = new ExerciseInRoutineRecyclerViewAdapter( this, exercises , this);
+
+        recyclerView.setAdapter( adapter );
+        recyclerView.setLayoutManager( new LinearLayoutManager( this ));
+        Log.d(TAG, "recyclerView");
+    } // END setUpView()
+    @Override
+    public void onExerciseClick(int pos) {
+
+    }
+
     public void onAddExercise( View view ){
         EditText repView =  findViewById(R.id.editTextNumberRespsInfo);
         EditText weightView = findViewById(R.id.editTextNumberWeightInfo);
@@ -181,6 +201,7 @@ public class NewRoutine extends AppCompatActivity {
         weightView.setText("");
         timeView.setText("");
         Toast.makeText(NewRoutine.this, "Exercise Successfully Added", Toast.LENGTH_SHORT).show();
+        setUpView();
     } // END addExercise()
 
     private boolean checkExerciseExist( String exerciseName ){
@@ -351,6 +372,4 @@ public class NewRoutine extends AppCompatActivity {
         Log.d(TAG, "New Coords: " + localizacaoAtual.toString());
         this.localizacaoAtual = localizacaoAtual;
     }
-
-    //TODO SPINNER SETTER https://www.youtube.com/watch?v=urQp7KsQhW8
 }
