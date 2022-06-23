@@ -36,7 +36,9 @@ public class GeneralStatusFragment extends Fragment {
                         int total;
                         if (task.isSuccessful()) {
                             int i= 0;
+                            String dateS = "No Data Found";
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                dateS = document.getId();
                                 getTotalExercise( document.getId() );
                                 i++;
                             }
@@ -49,6 +51,8 @@ public class GeneralStatusFragment extends Fragment {
                                 lifted.setText( "No Data Found" );
                                 Log.d("TAG", "getTotalExercised() success");
                             }
+                            TextView date = (TextView) getActivity().findViewById( R.id.textViewLastTimeExercisedInfo );
+                            date.setText( dateS );
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
@@ -66,16 +70,21 @@ public class GeneralStatusFragment extends Fragment {
                         float totalTime  = 0;
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                float weight = Float.parseFloat( document.get("weight").toString() );
+                                int weight = Math.toIntExact(document.getLong("weight"));
                                 int reps = Integer.parseInt( document.get("reps").toString() );
                                 int time = Integer.parseInt( document.get("time").toString() );
-                                totalLifted += ( weight ) * reps;
-                                totalTime += time / 60;
+                                Log.d(TAG, "onComplete: totallif B" + totalLifted);
+
+                                if (weight > 0)
+                                    totalLifted += ( weight  * reps);
+                                totalTime += time;
                             }
+                            totalTime /=  60;
+                            Log.d(TAG, "onComplete: totallif A" + totalLifted);
                             TextView time = (TextView) getActivity().findViewById( R.id.textViewTotalExerciseTimeInfo );
-                            time.setText( "" + totalLifted );
+                            time.setText( "" + totalTime );
                             TextView lifted = (TextView) getActivity().findViewById( R.id.textViewTotalLifetedWeightInfo );
-                            lifted.setText( "" + totalTime );
+                            lifted.setText( "" + totalLifted );
                             Log.d("TAG", "getTotalExercise() success");
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());

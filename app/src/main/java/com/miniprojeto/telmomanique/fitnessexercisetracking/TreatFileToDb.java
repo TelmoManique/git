@@ -40,6 +40,8 @@ public class TreatFileToDb {
 
         ArrayList<Exercise> exercises = new ArrayList<Exercise>();
         BufferedReader reader = null;
+        ArrayList<String> countMuscleGroup = new ArrayList<>();
+        ArrayList<String> countMuscleType = new ArrayList<>();
         try {
             reader = new BufferedReader(
                     new InputStreamReader(assets.open( txtPath )));
@@ -90,15 +92,21 @@ public class TreatFileToDb {
                     e.setImage( infos[5] );
                 exercises.add( e );
 
+                if( !countMuscleGroup.contains( e.getMuscleGroup()))
+                    countMuscleGroup.add(e.getMuscleGroup());
+                if( !countMuscleType.contains( e.getExerciseType()))
+                    countMuscleType.add( e.getExerciseType());
+
                /* Log.d( "DEBUG_R" , "" + i);
                 Log.d( "DEBUG_R" , "getName" + e.getName());
                 Log.d( "DEBUG_R" , "getExerciseType " + e.getExerciseType());
                 Log.d( "DEBUG_R" , "getMuscleGroup " + e.getMuscleGroup());
                 Log.d( "DEBUG_R" , "getImage: " + e.getImage());
-
                // Log.d("DEBUG_Read" ,   "mLine " +mLine );
                 */
             }
+            Log.d("DEBUG_R", "chooseFile: countMuscleGroup " + countMuscleGroup.size());
+            Log.d("DEBUG_R", "chooseFile: countMuscleType " + countMuscleType.size());
         } catch (IOException e) {
             Log.d("DEBUG_Read" ,   "Exception" );
         } finally {
@@ -112,7 +120,7 @@ public class TreatFileToDb {
         }
 
 
-        for( Exercise e : exercises ) {
+        /*for( Exercise e : exercises ) {
             Map<String, String> exeDetails = new HashMap<String, String>();
             exeDetails.put( "image" , e.getImage() );
             exeDetails.put("exerciseType" , e.getExerciseType());
@@ -136,5 +144,6 @@ public class TreatFileToDb {
                         }
                     });
         }
+        */
     }
 }

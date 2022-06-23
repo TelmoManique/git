@@ -173,8 +173,29 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
             Toast.makeText(NewRoutine.this, "Unable to Find Exercise", Toast.LENGTH_SHORT).show();
             return;
         }
+        if( reps <= 0 ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Number of Reps", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( weight < 0 ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Weight", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( time < 0 ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Time", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Exercise e = new Exercise();
+        for(Exercise eTemp : exercises){
+            if( eTemp.getName().equals(name)){
+                e.setExerciseType( eTemp.getExerciseType());
+                e.setMuscleGroup( eTemp.getMuscleGroup());
+            }
+        }
         e.setName( name );
         e.setReps( reps );
         e.setWeight( weight );
@@ -213,6 +234,10 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     } // END onSaveRoutine()
 
     private void addRoutine(){
+        if(r.getExercises().size() <= 0){
+            Toast.makeText(NewRoutine.this, "Empty routine" , Toast.LENGTH_SHORT).show();
+            return;
+        }
         Map<String, Object> locTemp = new HashMap<>();
         locTemp.put("location", r.getLocation() );
 
@@ -239,9 +264,11 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
         for (Exercise e: r.getExercises()) {
             i++;
             Map<String, Object> exercise = new HashMap<>();
-            exercise.put("resp", e.getReps() );
+            exercise.put("reps", e.getReps() );
             exercise.put("weight", e.getWeight() );
             exercise.put("time", e.getTime() );
+            exercise.put("exerciseType" , e.getExerciseType());
+            exercise.put("muscleGroup" , e.getMuscleGroup());
 
             firebase.getRoutinesCollection().document("users").collection( u.getId() )
                     .document( r.getDate())
