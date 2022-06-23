@@ -23,7 +23,6 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseLi
 import java.util.ArrayList;
 
 public class ExerciseList extends AppCompatActivity implements ExerciseListRecyclerViewInterface {
-    //TODO https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb POSSIBLE API
     private String TAG = "DEBUG_EXERCISELIST";
     private Firebase firebase;
     private User u;
@@ -38,6 +37,10 @@ public class ExerciseList extends AppCompatActivity implements ExerciseListRecyc
         // Initialize Firebase Auth
         firebase = Firebase.getInstance();
 
+        //Used to  read file, clean sanitize information, set up dataBase from file assets/textFile.txt
+        //The only reason this part of the code exists is to show how the DB was made
+        //new TreatFileToDb().chooseFile(getAssets());
+
         setUpListExercises();
     }
 
@@ -51,6 +54,7 @@ public class ExerciseList extends AppCompatActivity implements ExerciseListRecyc
             startActivity(loginPage);
             return;
         }
+        
         u = firebase.getUser();
     } // END onStart()
 
@@ -93,10 +97,11 @@ public class ExerciseList extends AppCompatActivity implements ExerciseListRecyc
         Exercise e = exercises.get(position);
         Log.d(TAG, "onExerciseClick: " + e.getName());
 
-        //TODO CREATE ViewExercise CLASS
-
         Intent intent = new Intent(this, ViewExercise.class);
-        intent.putExtra( "exercise" , (Parcelable) e);
+        intent.putExtra ("name" , e.getName());
+        intent.putExtra ("muscleGroup" , e.getMuscleGroup());
+        intent.putExtra ("type" , e.getExerciseType());
+        intent.putExtra ("image" , e.getImage());
         startActivity(intent);
 
     }// END onExerciseClick()

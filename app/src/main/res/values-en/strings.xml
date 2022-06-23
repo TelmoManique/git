@@ -24,4 +24,10 @@
     <string name="updatePersonal_textView">Update Personal Info</string>
     <string name="moreStats_textView">More Statistics</string>
     <string name="updateStatus_button">Update Status</string>
+    <string name="exercerciseType_textView">Exercise Type</string>
+    <string name="exerciseMuscle_textView">Muscle Being Exercised</string>
+    <string name="rep_textView">Number of Reps</string>
+    <string name="time_textView">Exercise Time</string>
+    <string name="generalInfo_textView">General Info</string>
+    <string name="weightProg_textView">Weight Progression</string>
 </resources>

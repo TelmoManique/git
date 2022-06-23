@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -28,7 +29,7 @@ import java.util.List;
 
 
 public class WeightStatusFragment extends Fragment {
-    private String TAG = "DEBUG_STATUS";
+    private String TAG = "DEBUG_STATUS_WEIGHTFRAGMENT";
     private Firebase firebase;
     private User u;
 
@@ -75,13 +76,12 @@ public class WeightStatusFragment extends Fragment {
 
     private void drawChart( ArrayList<Float> weights, ArrayList<String> dates ){
 
-        LineChart lineChart;
+        LineChart lineChart = getActivity().findViewById(R.id.lineChart);
 
-        lineChart = getActivity().findViewById(R.id.lineChart);
 
         List<Entry> entries = new ArrayList<Entry>();
 
-        List<Float> weightsFinal =  weights.subList(Math.max(weights.size() - 10, 0), weights.size());
+        List<Float> weightsFinal =  weights;
         for( int i = 0 ; i < weightsFinal.size(); i++ ){
             entries.add( new Entry( i , weightsFinal.get( i ) ));
         }
@@ -90,6 +90,11 @@ public class WeightStatusFragment extends Fragment {
         LineData lineData = new LineData(dataSet);
         lineData.setValueTextSize( 15 );
 
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        //TODO FIX VIEWPORT
+        lineChart.setVisibleXRange(10, 10);
         lineChart.setData(lineData);
         lineChart.invalidate(); // refresh
     } // END drawChart()

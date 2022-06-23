@@ -16,12 +16,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.fragments.GeneralStatusFragment;
-import com.miniprojeto.telmomanique.fitnessexercisetracking.fragments.MoreStatsFragment;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.fragments.MusclePieFragment;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.fragments.WeightStatusFragment;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
 
 //TODO FIX FRAMEACTIVITY BACK BUTTON
+//TODO ADD MORE STATS
 public class Status extends AppCompatActivity {
     private String TAG = "DEBUG_STATUS";
 
@@ -175,7 +176,7 @@ public class Status extends AppCompatActivity {
     public void onMoreStats( View view ){
         if( findViewById(R.id.fragment_container_view_status) != null ){
 
-            MoreStatsFragment moreStatsFragment = new MoreStatsFragment();
+            MusclePieFragment moreStatsFragment = new MusclePieFragment();
 
             getSupportFragmentManager()
                     .beginTransaction()

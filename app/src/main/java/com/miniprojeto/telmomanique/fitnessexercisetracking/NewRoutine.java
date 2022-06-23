@@ -14,12 +14,18 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,15 +37,16 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Exercise;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Routine;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseInRoutineRecyclerViewAdapter;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseInRoutineRecyclerViewInterface;
+import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.ExerciseListRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewRoutine extends AppCompatActivity {
+public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRecyclerViewInterface {
     private String TAG  = "DEBUG_NEWROUTINE";
     private String TAG_PERM = TAG + "_PERMS";
     private String TAG_LOC = TAG + "_LOCATION";
@@ -52,7 +59,7 @@ public class NewRoutine extends AppCompatActivity {
     private Firebase firebase;
     private User u = new User();
     private Routine r = new Routine();
-    private Collection<Exercise> exercises;
+    private ArrayList<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,7 @@ public class NewRoutine extends AppCompatActivity {
 
         // Initialize Firebase Auth
         firebase = Firebase.getInstance();
+        getExercisesList();
     }
 
     @Override
@@ -82,20 +90,11 @@ public class NewRoutine extends AppCompatActivity {
             iniciarLocalizacao(); //se tiver todas as permissões então pode começar a obter a localização
 
         u = firebase.getUser();
-
-        //TODO ADD buttonAddExercise AND FOLLOWING POP-UP/TEXTBOX
-        /*
-            TEXTBOX:
-                EXERCISE - (EITHER BY DROP LIST OR NAME)
-                RESP - INT
-                WEIGHT - INT KG
-                TIME - INT SEC
-         */
     } // END onStart()
 
     //Gets all existing exercises in the DB
     private void getExercisesList(){
-        ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+        ArrayList<Exercise> exercisesTemp = new ArrayList<Exercise>();
 
         firebase.getList_exercisesCollection().get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -106,9 +105,12 @@ public class NewRoutine extends AppCompatActivity {
                                 Exercise e = new Exercise();
                                 e.setName( document.getId() );
                                 e.setImage( document.getString( "image" ) );
-                                e.setDescription( document.getString( "description" ) );
+                                e.setMuscleGroup( document.getString( "muscleGroup" ) );
+                                e.setExerciseType( document.getString( "exerciseType" ));
+                                Log.d(TAG, "onComplete: ExName" + e.getName());
+                                exercisesTemp.add( e );
                             }
-                            setExercisesList( Collections.unmodifiableList( exercises ) );
+                            setExercisesList( exercisesTemp );
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -116,120 +118,163 @@ public class NewRoutine extends AppCompatActivity {
                 });
     } // END getExercisesList()
 
-    private void setExercisesList( Collection<Exercise> exercises ){
+    private void setExercisesList( ArrayList<Exercise> exercises ){
         this.exercises = exercises;
+        addDropListInfo();
     }
 
-    public void onNewExercise( View view){
-        //TODO GET INFO FROM POP-UP/TEXTBOX
-        String exercise = "Dumbell";
-        checkExerciseExist( exercise );
-    } // END onNewExercise()
+    private void addDropListInfo(){
+        Spinner exeNameSpinner =  findViewById(R.id.spinnerName);
 
-    private void checkExerciseExist( String exercise ){
+        ArrayList<String > tempEx = new ArrayList<>();
+        for( Exercise e : exercises ){
+            tempEx.add( e.getName() );
+        }
 
-        firebase.getList_exercisesCollection().get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if( document.getId().compareTo( exercise ) == 0 ){
-                                    String image = document.getString( "image" );
-                                    String description = document.getString( "description" );
-                                    addExercise( exercise , image, description);
-                                    return;
-                                }
-                            }
-                            //TODO IN CASE THE EXERCISE DOSEN'T EXIST WARN
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-    } // END checkExerciseExist()
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, tempEx); //selected item will look like a spinner set from XML
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        exeNameSpinner.setAdapter(spinnerArrayAdapter);
+    }
 
-    private void addExercise( String exercise, String image, String description ){
-        //TODO CLOSE POP-UP/TEXTBOX
+    public void onAddExercise( View view ){
+        EditText repView =  findViewById(R.id.editTextNumberRespsInfo);
+        EditText weightView = findViewById(R.id.editTextNumberWeightInfo);
+        EditText timeView = findViewById(R.id.editTextNumberTextInfo);
+        Spinner nameSpinner = findViewById(R.id.spinnerName);
+
+        if( nameSpinner.getSelectedItem().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Exercise Name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( repView.getText().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Number of Reps", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( weightView.getText().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Weight", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( timeView.getText().toString().equals("") ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Time", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String name = nameSpinner.getSelectedItem().toString();
+        int reps = Integer.parseInt( repView.getText().toString());
+        int weight = Integer.parseInt( weightView.getText().toString());
+        int time = Integer.parseInt( timeView.getText().toString());
+
+        if( !checkExerciseExist( name ) ){
+            Toast.makeText(NewRoutine.this, "Unable to Find Exercise", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( reps <= 0 ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Number of Reps", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( weight < 0 ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Weight", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if( time < 0 ){
+            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
+            Toast.makeText(NewRoutine.this, "Invalide Time", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Exercise e = new Exercise();
-        e.setName( (r.getExercises().size() + 1) + " - " + exercise );
-        e.setImage( image );
-        e.setDescription( description );
-
-        //TODO GET INFO FROM VIEW
-        int reps;
-        int weight; //g
-        int time; //seconds
-
-        ////
-        reps = 10;
-        weight = 10;
-        time = 10;
-        ////
-
+        for(Exercise eTemp : exercises){
+            if( eTemp.getName().equals(name)){
+                e.setExerciseType( eTemp.getExerciseType());
+                e.setMuscleGroup( eTemp.getMuscleGroup());
+            }
+        }
+        e.setName( name );
         e.setReps( reps );
         e.setWeight( weight );
         e.setTime( time );
-
         r.addExercise( e );
+        Log.d(TAG, "onAddExercise: name" + e.getName());
+        Log.d(TAG, "onAddExercise: reps" + e.getReps());
+        Log.d(TAG, "onAddExercise: weight" + e.getWeight());
+        Log.d(TAG, "onAddExercise: time" + e.getTime());
 
-        /*
-            for(Exercise ex : r.getExercises()){
-                Log.d("DEBUG_NEWROUTINE_addExercise", "r.exList.name: " + ex.getName() );
-            }
-        */
 
-        //TODO ADD EXERCISE TO THE SCREEN
+        repView.setText("");
+        weightView.setText("");
+        timeView.setText("");
+        Toast.makeText(NewRoutine.this, "Exercise Successfully Added", Toast.LENGTH_SHORT).show();
+        setUpView();
     } // END addExercise()
+
+    private boolean checkExerciseExist( String exerciseName ){
+        for ( Exercise e : exercises){
+            if( e.getName().equals( exerciseName ))
+                return true;
+        }
+        return false;
+    } // END checkExerciseExist()
 
     public void onSaveRoutine( View view ){
         r.setUser( u );
         String date = android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss",  Calendar.getInstance().getTime() ).toString() ;
         r.setDate( date );
-        r.setLocation( localizacaoAtual.getLatitude() + ", " +localizacaoAtual.getLongitude());
+        r.setLocation( localizacaoAtual.getLatitude() + "," +localizacaoAtual.getLongitude());
 
         Log.d(TAG , "r.date: " + r.getDate());
         Log.d(TAG , "r.u.id : " + r.getUser().getId());
-        Log.d(TAG , "r.location: " + r.getLocation());
         addRoutine();
     } // END onSaveRoutine()
 
     private void addRoutine(){
+        if(r.getExercises().size() <= 0){
+            Toast.makeText(NewRoutine.this, "Empty routine" , Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Map<String, Object> locTemp = new HashMap<>();
+        locTemp.put("location", r.getLocation() );
 
+        firebase.getRoutinesCollection().document("users").collection( u.getId() )
+                .document( r.getDate())
+                .set( locTemp )
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        Toast.makeText(NewRoutine.this, "Added with success.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                        Toast.makeText(NewRoutine.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        Intent myRoutinesPage = new Intent( NewRoutine.this, MyRoutines.class);
+                        startActivity(myRoutinesPage);
+                    }
+                });
+        int i = 0;
         for (Exercise e: r.getExercises()) {
+            i++;
             Map<String, Object> exercise = new HashMap<>();
-            exercise.put("resp", e.getReps() );
+            exercise.put("reps", e.getReps() );
             exercise.put("weight", e.getWeight() );
             exercise.put("time", e.getTime() );
+            exercise.put("exerciseType" , e.getExerciseType());
+            exercise.put("muscleGroup" , e.getMuscleGroup());
 
             firebase.getRoutinesCollection().document("users").collection( u.getId() )
                     .document( r.getDate())
                     .collection("exercises")
-                    .document( e.getName() )
+                    .document( i + "- " +e.getName() )
                     .set( exercise )
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "DocumentSnapshot successfully written!");
-                            Toast.makeText(NewRoutine.this, "Added with success.", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
-                            Toast.makeText(NewRoutine.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                            Intent myRoutinesPage = new Intent( NewRoutine.this, MyRoutines.class);
-                            startActivity(myRoutinesPage);
-                        }
-                    });
-
-            firebase.getRoutinesCollection().document("users").collection( u.getId() )
-                    .document( r.getDate())
-                    .collection("exercises")
-                    .document( e.getName() )
-                    .update( "location" , r.getLocation()  )
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -251,9 +296,19 @@ public class NewRoutine extends AppCompatActivity {
         startActivity(myRoutinesPage);
     } // END addRoutine()
 
-    private void setLocation( Location localizacaoAtual ){
-        Log.d(TAG, "New Coords: " + localizacaoAtual.toString());
-        this.localizacaoAtual = localizacaoAtual;
+    private void setUpView(){
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        ExerciseInRoutineRecyclerViewAdapter adapter = new ExerciseInRoutineRecyclerViewAdapter( this, r.getExercises() , this);
+
+        recyclerView.setAdapter( adapter );
+        recyclerView.setLayoutManager( new LinearLayoutManager( this ));
+        Log.d(TAG, "recyclerView");
+    } // END setUpView()
+    @Override
+    public void onExerciseClick(int pos) {
+        r.removeExercise( pos );
+        setUpView();
     }
 
     /* ________________________LOCATION LOCATION PERMISSIONS_________________________________*/
@@ -342,4 +397,9 @@ public class NewRoutine extends AppCompatActivity {
             localizacaoAtual = location;
         }
     }; // END LocationListener
+
+    private void setLocation( Location localizacaoAtual ){
+        Log.d(TAG, "New Coords: " + localizacaoAtual.toString());
+        this.localizacaoAtual = localizacaoAtual;
+    }
 }

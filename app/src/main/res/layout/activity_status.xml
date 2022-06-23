@@ -21,55 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewWeightInfo" />
 
-    <Button
-        android:id="@+id/buttonUpdateInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/updatePersonal_textView"
-        android:onClick="onUpdateInfo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonMoreStat"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="onMoreStats"
-        android:text="@string/moreStats_textView"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
-        app:layout_constraintEnd_toStartOf="@+id/buttonGeneralInfo"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/fragment_container_view_status"
-        app:layout_constraintTop_toBottomOf="@+id/guideline" />
-
-    <Button
-        android:id="@+id/buttonGeneralInfo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="General Info"
-        android:onClick="onGeneralInfo"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
-        app:layout_constraintEnd_toStartOf="@+id/buttonWeightProg"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonMoreStat"
-        app:layout_constraintTop_toBottomOf="@+id/guideline" />
-
-    <Button
-        android:id="@+id/buttonWeightProg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:onClick="onWeight"
-        android:text="Weight Progression"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_container_view_status"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonGeneralInfo"
-        app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/textViewWeight"
@@ -140,5 +91,65 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.80" />
+
+    <Button
+        android:id="@+id/buttonMoreStat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_main"
+        android:onClick="onMoreStats"
+        android:text="@string/moreStats_textView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
+        app:layout_constraintEnd_toStartOf="@+id/buttonGeneralInfo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/fragment_container_view_status"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/buttonGeneralInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_main"
+        android:onClick="onGeneralInfo"
+        android:text="@string/generalInfo_textView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonMoreStat"
+        app:layout_constraintEnd_toStartOf="@+id/buttonWeightProg"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonMoreStat"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/buttonWeightProg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_main"
+        android:onClick="onWeight"
+        android:text="@string/weightProg_textView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonMoreStat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonGeneralInfo"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/buttonUpdateInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_main"
+        android:onClick="onUpdateInfo"
+        android:text="@string/updatePersonal_textView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMoreStat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

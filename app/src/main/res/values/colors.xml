@@ -10,6 +10,30 @@
     <color name="underWeight">#00ffff</color>
     <color name="healthyWeight">#00ff00</color>
     <color name="overWeight">#ffff00</color>
-    <color name="obesseWeight">#b45f06</color>
-    <color name="exremelyObeseWeight">#980000</color>
+    <color name="obeseWeight">#b45f06</color>
+    <color name="extremelyObeseWeight">#980000</color>
+
+    <!-- Giant Goldfish -->
+    <color name="light_cyan">#65cbdf</color>
+    <color name="dark_cyan">#316974</color>
+    <color name="light_grey">#a1d3d0</color>
+    <color name="dark_grey">#526d6b</color>
+    <color name="light_matcha">#d8dcc5</color>
+    <color name="dark_matcha">#6f7265</color>
+    <color name="light_tangerine">#eb812a</color>
+    <color name="dark_tangerine">#7a4011</color>
+    <color name="light_orange">#f06500</color>
+    <color name="dark_orange">#7d3100</color>
+
+    <!-- 161 -->
+    <color name="green_1">#4e9881</color>
+    <color name="green_2">#244d40</color>
+    <color name="green_3">#41806c</color>
+    <color name="green_4">#1e4035</color>
+    <color name="green_5">#244e41</color>
+    <color name="green_6">#0d241e</color>
+    <color name="green_7">#061812</color>
+    <color name="green_8">#020705</color>
+    <color name="green_9">#000000</color>
+
 </resources>

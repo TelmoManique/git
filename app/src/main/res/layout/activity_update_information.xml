@@ -22,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewHeight"
@@ -56,9 +57,11 @@
         android:layout_marginBottom="16dp"
         android:onClick="onUpdateInformation"
         android:text="@string/updateStatus_button"
+        android:inputType="number"
+        android:background="@drawable/button_main"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
