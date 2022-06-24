@@ -14,7 +14,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Firebase;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.R;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.User;
-
+//TODO CORRECT MUSCLEPIE INPUT ARRAY
 public class GeneralStatusFragment extends Fragment {
     private String TAG= "DEBUG_GENERALSTATUSFRAGMENT";
 

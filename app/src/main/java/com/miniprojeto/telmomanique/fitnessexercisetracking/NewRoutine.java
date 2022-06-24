@@ -145,22 +145,18 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
         Spinner nameSpinner = findViewById(R.id.spinnerName);
 
         if( nameSpinner.getSelectedItem().toString().equals("") ){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Exercise Name", Toast.LENGTH_SHORT).show();
             return;
         }
         if( repView.getText().toString().equals("") ){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Number of Reps", Toast.LENGTH_SHORT).show();
             return;
         }
         if( weightView.getText().toString().equals("") ){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Weight", Toast.LENGTH_SHORT).show();
             return;
         }
         if( timeView.getText().toString().equals("") ){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Time", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -174,17 +170,14 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
             return;
         }
         if( reps <= 0 ){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Number of Reps", Toast.LENGTH_SHORT).show();
             return;
         }
         if( weight < 0 ){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Weight", Toast.LENGTH_SHORT).show();
             return;
         }
         if( time < 0 ){
-            //TODO ERROR MESSAGE TOAST AND CLEAN FINDS
             Toast.makeText(NewRoutine.this, "Invalide Time", Toast.LENGTH_SHORT).show();
             return;
         }

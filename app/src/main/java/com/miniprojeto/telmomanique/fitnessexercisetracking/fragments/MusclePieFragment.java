@@ -152,6 +152,7 @@ public class MusclePieFragment extends Fragment {
         musclePie.setUsePercentValues(true);
 
         //TODO STYLE
+        //https://www.youtube.com/watch?v=vhKtbECeazQ LIBRARY
         data.setValueTextColor(Color.BLACK);
         set.setColors(ColorTemplate.MATERIAL_COLORS);
         set.setValueLinePart1OffsetPercentage(10.f);
@@ -179,4 +180,3 @@ public class MusclePieFragment extends Fragment {
     } // END class GetInformation
 }
 
-//TODO https://www.youtube.com/watch?v=vhKtbECeazQ VERIFY MOST TYPE EXERCISES
