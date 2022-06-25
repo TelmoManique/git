@@ -273,6 +273,7 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot successfully written!");
                             Toast.makeText(NewRoutine.this, "Added with success.", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -285,8 +286,6 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
                         }
                     });
         }
-        Intent myRoutinesPage = new Intent( NewRoutine.this, MyRoutines.class);
-        startActivity(myRoutinesPage);
     } // END addRoutine()
 
     private void setUpView(){

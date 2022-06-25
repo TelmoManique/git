@@ -196,5 +196,6 @@ public class Status extends AppCompatActivity {
     public void onUpdateInfo( View view ){
         Intent updatePage = new Intent(this, UpdateInformation.class);
         startActivity(updatePage);
+        finish();
     }
 }

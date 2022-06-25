@@ -52,11 +52,18 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
     @Override
     public void onStart() {
         super.onStart();
+        setUpView();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAllRoutines();
         setUpView();
     }
 
     private void getAllRoutines(){
+        routines = new ArrayList<>();
         firebase.getRoutinesCollection().document( "users" ).collection( u.getId() ).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -68,7 +75,6 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
                                 routines.add( document );
                                 Log.d(TAG, "" + document.getId());
                             }
-                            //TODO ADD LOCATION
                             parseRoutines( routines );
 
                         } else {
@@ -119,7 +125,6 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
             Log.d(TAG, "e.weight: " + e.getWeight());
             Log.d(TAG, "e.time: " + e.getTime());
         }
-        //TODO ADD ROUTINE TO SCREEN
         setUpView();
     } // END addRoutine()
 

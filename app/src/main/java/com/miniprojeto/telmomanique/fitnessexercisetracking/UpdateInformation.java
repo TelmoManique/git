@@ -3,6 +3,7 @@ package com.miniprojeto.telmomanique.fitnessexercisetracking;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -102,8 +103,9 @@ public class UpdateInformation extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText( UpdateInformation.this, "Added with success.", Toast.LENGTH_SHORT).show();
-                        Intent loginPage = new Intent(UpdateInformation.this, Status.class);
-                        startActivity(loginPage);
+                        Intent updatePage = new Intent(UpdateInformation.this, Status.class);
+                        startActivity(updatePage);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
