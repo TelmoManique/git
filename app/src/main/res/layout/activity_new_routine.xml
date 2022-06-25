@@ -21,7 +21,7 @@
             android:id="@+id/spinnerName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:contentDescription="Exercise Name"
+            android:contentDescription="@string/exerciseName_spinnerView"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/rep_textView"
             android:textColor="@color/green_5"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/textViewWeight"
             app:layout_constraintHorizontal_bias="0.5"
@@ -43,20 +43,20 @@
             app:layout_constraintTop_toBottomOf="@+id/spinnerName" />
 
         <EditText
-            android:id="@+id/editTextNumberRespsInfo"
-            android:layout_width="121dp"
+            android:id="@+id/editTextNumberRespInfo"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="10"
-            android:inputType="number"
+            android:hint="@string/number_editText"
+            android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:textColor="@color/green_5"
             android:textColorHint="@color/green_1"
             app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
             app:layout_constraintEnd_toEndOf="@+id/textViewReps"
             app:layout_constraintStart_toStartOf="@+id/textViewReps"
-            app:layout_constraintTop_toBottomOf="@+id/textViewReps" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewReps"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/textViewWeight"
@@ -65,7 +65,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/weight_textView"
             android:textColor="@color/green_5"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textViewReps"
             app:layout_constraintEnd_toStartOf="@+id/textViewTime"
@@ -75,19 +75,20 @@
 
         <EditText
             android:id="@+id/editTextNumberWeightInfo"
-            android:layout_width="121dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="10"
-            android:inputType="number"
+            android:hint="@string/kilograms_editText"
+            android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:textColor="@color/green_5"
             android:textColorHint="@color/green_1"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberRespsInfo"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberRespInfo"
             app:layout_constraintEnd_toEndOf="@+id/textViewWeight"
             app:layout_constraintStart_toStartOf="@+id/textViewWeight"
-            app:layout_constraintTop_toTopOf="@+id/editTextNumberRespsInfo"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/editTextNumberRespInfo"
+            app:layout_constraintVertical_bias="0.0"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/textViewTime"
@@ -96,7 +97,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/time_textView"
             android:textColor="@color/green_5"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textViewReps"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,18 +107,19 @@
 
         <EditText
             android:id="@+id/editTextNumberTextInfo"
-            android:layout_width="121dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="10"
-            android:inputType="number"
+            android:hint="@string/seconds_editText"
+            android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:textColor="@color/green_5"
             android:textColorHint="@color/green_1"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberRespsInfo"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberRespInfo"
             app:layout_constraintEnd_toEndOf="@+id/textViewTime"
             app:layout_constraintStart_toStartOf="@+id/textViewTime"
-            app:layout_constraintTop_toTopOf="@+id/editTextNumberRespsInfo" />
+            app:layout_constraintTop_toTopOf="@+id/editTextNumberRespInfo"
+            android:importantForAutofill="no" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -126,10 +128,12 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/light_orange"
             android:clickable="true"
+            android:contentDescription="@string/addExercise_floatingButton"
+            android:focusable="true"
             android:onClick="onAddExercise"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumberRespsInfo"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumberRespInfo"
             app:srcCompat="@drawable/ic_baseline_add_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

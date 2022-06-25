@@ -36,26 +36,6 @@ public class Status extends AppCompatActivity {
         // Initialize Firebase Auth
         firebase = Firebase.getInstance();
 
-        if( findViewById(R.id.fragment_container_view_status) != null ){
-            if (savedInstanceState != null){
-                return;
-            }
-
-            GeneralStatusFragment generalFragment = new GeneralStatusFragment();
-
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragment_container_view_status, generalFragment)
-                    .commit();
-
-            Button generalInfo = findViewById(R.id.buttonGeneralInfo);
-            generalInfo.setClickable( false );
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         if(!firebase.isLoggedIn()){
             Intent loginPage = new Intent(this, Login.class);
@@ -63,7 +43,29 @@ public class Status extends AppCompatActivity {
             return;
         }
         u = firebase.getUser();
-        getUserInfo();
+
+        if( findViewById(R.id.fragment_container_view_status) != null ){
+            if (savedInstanceState != null){
+                return;
+            }
+            getUserInfo();
+            Log.d(TAG, "onCreate: done");
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        GeneralStatusFragment generalFragment = new GeneralStatusFragment();
+        Log.d(TAG, "onStart: startFragment");
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container_view_status, generalFragment)
+                .commit();
+
+        Button generalInfo = findViewById(R.id.buttonGeneralInfo);
+        generalInfo.setClickable( false );
     }// END onStart()
 
     private void getUserInfo(){

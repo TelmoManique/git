@@ -139,7 +139,7 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     }
 
     public void onAddExercise( View view ){
-        EditText repView =  findViewById(R.id.editTextNumberRespsInfo);
+        EditText repView =  findViewById(R.id.editTextNumberRespInfo);
         EditText weightView = findViewById(R.id.editTextNumberWeightInfo);
         EditText timeView = findViewById(R.id.editTextNumberTextInfo);
         Spinner nameSpinner = findViewById(R.id.spinnerName);

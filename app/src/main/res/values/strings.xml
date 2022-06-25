@@ -36,4 +36,11 @@
     <string name="streetName_textView">Street Name</string>
     <string name="saveRoutine_button">Save Routine</string>
     <string name="cityName_textView">City</string>
+    <string name="exerciseName_spinnerView">Exercise Name</string>
+    <string name="number_editText">number</string>
+    <string name="kilograms_editText">kilograms</string>
+    <string name="seconds_editText">seconds</string>
+    <string name="addExercise_floatingButton">Add Exercise</string>
+    <string name="newRoutine_floatingButton">New Routine</string>
+    <string name="centimeters_editTextHint">Centimeters</string>
 </resources>
