@@ -7,6 +7,14 @@
         <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/drawable/button_main.xml" value="0.27" />
         <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/drawable/button_round_plus.xml" value="0.1" />
         <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.27" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-land/activity_login.xml" value="0.2275132275132275" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-land/activity_main.xml" value="0.31040564373897706" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-land/activity_my_routines.xml" value="0.31040564373897706" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-land/activity_new_routine.xml" value="0.31040564373897706" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-sw600dp/activity_login.xml" value="0.275" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.275" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-sw600dp/activity_my_routines.xml" value="0.5" />
+        <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-sw600dp/activity_new_routine.xml" value="0.25" />
         <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.12115127175368139" />
         <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout-w936dp/activity_login.xml" value="0.14140625" />
         <entry key="..\:/Users/Telmo Manique/AndroidStudioProjects/FitnessExerciseTracking/app/src/main/res/layout/activity_exercise_list.xml" value="0.2" />

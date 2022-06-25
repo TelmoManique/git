@@ -18,9 +18,9 @@
     <string name="weight_textView">Weight</string>
     <string name="height_textView">Height</string>
     <string name="bmi_textview">BMI</string>
-    <string name="totalWeight_textView">"Total Weight Lifted (Kg): "</string>
-    <string name="totalTime_textView">"Total Time Exercised (m): "</string>
-    <string name="lastExercised_textView">"Last Time Exercised: "</string>
+    <string name="totalWeight_textView">Total Weight Lifted (Kg)</string>
+    <string name="totalTime_textView">Total Time Exercised (m)</string>
+    <string name="lastExercised_textView">Last Time Exercised</string>
     <string name="updatePersonal_textView">Update Personal Info</string>
     <string name="moreStats_textView">More Statistics</string>
     <string name="updateStatus_button">Update Status</string>
@@ -30,4 +30,15 @@
     <string name="time_textView">Exercise Time</string>
     <string name="generalInfo_textView">General Info</string>
     <string name="weightProg_textView">Weight Progression</string>
+    <string name="routDay_textView">Date</string>
+    <string name="routMuscle_textView">Targeted Muscle</string>
+    <string name="saveRoutine_button">Save Routine</string>
+    <string name="cityName_textView">City</string>
+    <string name="exerciseName_spinnerView">Exercise Name</string>
+    <string name="number_editText">number</string>
+    <string name="kilograms_editText">kilograms</string>
+    <string name="seconds_editText">seconds</string>
+    <string name="addExercise_floatingButton">Add Exercise</string>
+    <string name="newRoutine_floatingButton">New Routine</string>
+    <string name="centimeters_editTextHint">Centimeters</string>
 </resources>
