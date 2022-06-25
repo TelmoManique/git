@@ -22,6 +22,8 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.RoutineLis
 import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.RoutineListRecyclerViewInterface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyRoutines extends AppCompatActivity implements RoutineListRecyclerViewInterface {
     private String TAG = "DEBUG_MYROUTINES";
@@ -29,6 +31,7 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
     private Firebase firebase;
     private User u;
     private ArrayList<Routine> routines = new ArrayList<Routine>();
+    private ArrayList<String> locations = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,7 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         for( QueryDocumentSnapshot documents : routines ){
             Routine r = new Routine();
             r.setDate( documents.getId().toString() );
+            r.setLocation( documents.get("location").toString());
 
             firebase.getRoutinesCollection().document( "users" ).collection( u.getId() ).document( r.getDate() ).collection( "exercises" ).get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
