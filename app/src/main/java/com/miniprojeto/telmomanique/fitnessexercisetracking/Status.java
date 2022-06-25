@@ -44,27 +44,27 @@ public class Status extends AppCompatActivity {
         }
         u = firebase.getUser();
 
+        getUserInfo();
+
         if( findViewById(R.id.fragment_container_view_status) != null ){
             if (savedInstanceState != null)
                 return;
+
+            GeneralStatusFragment generalFragment = new GeneralStatusFragment();
+            Log.d(TAG, "onStart: startFragment");
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragment_container_view_status, generalFragment)
+                    .commit();
+
+            Button generalInfo = findViewById(R.id.buttonGeneralInfo);
+            generalInfo.setClickable( false );
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
-        getUserInfo();
-
-        GeneralStatusFragment generalFragment = new GeneralStatusFragment();
-        Log.d(TAG, "onStart: startFragment");
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragment_container_view_status, generalFragment)
-                .commit();
-
-        Button generalInfo = findViewById(R.id.buttonGeneralInfo);
-        generalInfo.setClickable( false );
     }// END onStart()
 
     private void getUserInfo(){

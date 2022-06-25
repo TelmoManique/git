@@ -216,6 +216,10 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     } // END checkExerciseExist()
 
     public void onSaveRoutine( View view ){
+        if(r.getExercises().size() <= 0){
+            Toast.makeText(NewRoutine.this, "Empty routine" , Toast.LENGTH_SHORT).show();
+            return;
+        }
         r.setUser( u );
         String date = android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss",  Calendar.getInstance().getTime() ).toString() ;
         r.setDate( date );

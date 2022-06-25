@@ -45,14 +45,11 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         }
 
         u = firebase.getUser();
-
-        getAllRoutines();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        setUpView();
     }
 
     @Override
