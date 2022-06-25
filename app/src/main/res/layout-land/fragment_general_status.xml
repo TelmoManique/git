@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textViewTotalLifetedWeight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/totalWeight_textView"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTotalExerciseTime"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTotalLifetedWeightInfo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTotalLifetedWeightInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTotalLifetedWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotalLifetedWeight"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTotalExerciseTime"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/totalTime_textView"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLastTimeExercised"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTotalExerciseTimeInfo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalLifetedWeight" />
+
+    <TextView
+        android:id="@+id/textViewTotalExerciseTimeInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTotalExerciseTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotalExerciseTime"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalLifetedWeight" />
+
+    <TextView
+        android:id="@+id/textViewLastTimeExercised"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/lastExercised_textView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewLastTimeExercisedInfo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalExerciseTime" />
+
+    <TextView
+        android:id="@+id/textViewLastTimeExercisedInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewLastTimeExercised"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewLastTimeExercised"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalExerciseTime" />
+</androidx.constraintlayout.widget.ConstraintLayout>

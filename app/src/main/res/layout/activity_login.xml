@@ -43,7 +43,7 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/login_textView"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColor="@color/green_5"
         android:textColorHint="@color/green_1"
@@ -52,7 +52,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -69,5 +70,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        android:importantForAutofill="no" />
 </androidx.constraintlayout.widget.ConstraintLayout>

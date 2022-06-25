@@ -45,17 +45,16 @@ public class Status extends AppCompatActivity {
         u = firebase.getUser();
 
         if( findViewById(R.id.fragment_container_view_status) != null ){
-            if (savedInstanceState != null){
+            if (savedInstanceState != null)
                 return;
-            }
-            getUserInfo();
-            Log.d(TAG, "onCreate: done");
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        getUserInfo();
 
         GeneralStatusFragment generalFragment = new GeneralStatusFragment();
         Log.d(TAG, "onStart: startFragment");
