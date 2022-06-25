@@ -21,6 +21,9 @@ public class GeneralStatusFragment extends Fragment {
     private Firebase firebase;
     private User u;
 
+    private float totalLiftedTotal = 0;
+    private float totalTime = 0;
+
     public GeneralStatusFragment(){
         super(R.layout.fragment_general_status);
         firebase = Firebase.getInstance();
@@ -33,7 +36,6 @@ public class GeneralStatusFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        int total;
                         if (task.isSuccessful()) {
                             int i= 0;
                             String dateS = "No Data Found";
@@ -65,9 +67,9 @@ public class GeneralStatusFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                        float totalLifted  = 0;
-                        float totalTime  = 0;
+                        float totalLifted  = getTotalLifted();
+                        float totalTime  = getTotaltime();
+                        float tempTime = 0;
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 int weight = Math.toIntExact(document.getLong("weight"));
@@ -77,9 +79,11 @@ public class GeneralStatusFragment extends Fragment {
 
                                 if (weight > 0)
                                     totalLifted += ( weight  * reps);
-                                totalTime += time;
+                                tempTime += time;
                             }
-                            totalTime /=  60;
+                            totalTime +=  (tempTime/60) ;
+                            setTotalLifeted(totalLifted);
+                            setTotalTime(totalTime);
                             Log.d(TAG, "onComplete: totallif A" + totalLifted);
                             TextView time = (TextView) getActivity().findViewById( R.id.textViewTotalExerciseTimeInfo );
                             time.setText( "" + totalTime );
@@ -92,6 +96,22 @@ public class GeneralStatusFragment extends Fragment {
                     }
                 });
     } //END getTotalExercise()
+
+    private void setTotalTime(float totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    private void setTotalLifeted(float totalLifted) {
+        this.totalLiftedTotal = totalLifted;
+    }
+
+    private float getTotaltime() {
+        return this.totalTime;
+    }
+
+    private float getTotalLifted() {
+        return this.totalLiftedTotal;
+    }
 
     //ASYNC CLASS TO ENSURE IT ALWAYS GETS VALUES
     private class GetInformation extends AsyncTask<Void, Void, Void>{
