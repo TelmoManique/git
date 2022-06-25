@@ -66,7 +66,8 @@ public class Register extends AppCompatActivity {
             return;
         }
 
-        firebase.getAuth().createUserWithEmailAndPassword(mail, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebase.getAuth().createUserWithEmailAndPassword(mail, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {

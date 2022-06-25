@@ -2,6 +2,7 @@ package com.miniprojeto.telmomanique.fitnessexercisetracking.objects;
 
 import android.util.Log;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -20,6 +21,7 @@ public class Firebase {
     private CollectionReference list_exercisesCollection;
     private ListenerRegistration registration=null;
     private User u;
+    private GoogleSignInAccount acct;
 
     private Firebase(){
         setDb();
@@ -85,5 +87,12 @@ public class Firebase {
             firebase = new Firebase();
         }
         return firebase;
+    }
+
+    public void setAccount(GoogleSignInAccount acct) {
+        this.acct = acct;
+    }
+    public GoogleSignInAccount getAccount(){
+        return acct;
     }
 }

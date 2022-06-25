@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+
         if(!firebase.isLoggedIn()){
             Intent loginPage = new Intent(this, Login.class);
             startActivity(loginPage);

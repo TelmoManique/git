@@ -36,26 +36,10 @@
         app:layout_constraintTop_toTopOf="@+id/button" />
 
     <Button
-        android:id="@+id/buttonGoals"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/button_main"
-        android:text="@string/goals_button"
-        android:textColor="@color/white"
-        android:textSize="64sp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonStatus"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonStatus"
-        app:layout_constraintTop_toTopOf="@+id/buttonStatus" />
-
-    <Button
         android:id="@+id/buttonStatus"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_main"
         android:onClick="onStatus"
@@ -63,8 +47,7 @@
         android:textColor="@color/white"
         android:textSize="64sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMyRoutines"
-        app:layout_constraintEnd_toStartOf="@+id/buttonGoals"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintVertical_chainStyle="spread_inside" />
@@ -80,8 +63,7 @@
         android:textColor="@color/white"
         android:textSize="64sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonGoals"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/buttonStatus"
         app:layout_constraintTop_toBottomOf="@+id/buttonMyRoutines" />
 
@@ -96,7 +78,7 @@
         android:textColor="@color/white"
         android:textSize="64sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonExList"
-        app:layout_constraintEnd_toEndOf="@+id/buttonGoals"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/buttonStatus"
         app:layout_constraintTop_toBottomOf="@+id/buttonStatus" />
 
