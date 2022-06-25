@@ -36,13 +36,22 @@ public class Status extends AppCompatActivity {
         // Initialize Firebase Auth
         firebase = Firebase.getInstance();
 
+        // Check if user is signed in (non-null) and update UI accordingly.
+        if(!firebase.isLoggedIn()){
+            Intent loginPage = new Intent(this, Login.class);
+            startActivity(loginPage);
+            return;
+        }
+        u = firebase.getUser();
+
+        getUserInfo();
+
         if( findViewById(R.id.fragment_container_view_status) != null ){
-            if (savedInstanceState != null){
+            if (savedInstanceState != null)
                 return;
-            }
 
             GeneralStatusFragment generalFragment = new GeneralStatusFragment();
-
+            Log.d(TAG, "onStart: startFragment");
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_container_view_status, generalFragment)
@@ -56,14 +65,6 @@ public class Status extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        if(!firebase.isLoggedIn()){
-            Intent loginPage = new Intent(this, Login.class);
-            startActivity(loginPage);
-            return;
-        }
-        u = firebase.getUser();
-        getUserInfo();
     }// END onStart()
 
     private void getUserInfo(){
@@ -195,5 +196,6 @@ public class Status extends AppCompatActivity {
     public void onUpdateInfo( View view ){
         Intent updatePage = new Intent(this, UpdateInformation.class);
         startActivity(updatePage);
+        finish();
     }
 }

@@ -71,8 +71,7 @@ public class Login extends AppCompatActivity {
                     User u = new User( user.getUid() , user.getEmail() );
 
                     fireBase.setUser( u );
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
+                    finish();
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.getException());

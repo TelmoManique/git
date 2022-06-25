@@ -139,7 +139,7 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     }
 
     public void onAddExercise( View view ){
-        EditText repView =  findViewById(R.id.editTextNumberRespsInfo);
+        EditText repView =  findViewById(R.id.editTextNumberRespInfo);
         EditText weightView = findViewById(R.id.editTextNumberWeightInfo);
         EditText timeView = findViewById(R.id.editTextNumberTextInfo);
         Spinner nameSpinner = findViewById(R.id.spinnerName);
@@ -216,6 +216,10 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
     } // END checkExerciseExist()
 
     public void onSaveRoutine( View view ){
+        if(r.getExercises().size() <= 0){
+            Toast.makeText(NewRoutine.this, "Empty routine" , Toast.LENGTH_SHORT).show();
+            return;
+        }
         r.setUser( u );
         String date = android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss",  Calendar.getInstance().getTime() ).toString() ;
         r.setDate( date );
@@ -273,6 +277,7 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot successfully written!");
                             Toast.makeText(NewRoutine.this, "Added with success.", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -285,8 +290,6 @@ public class NewRoutine extends AppCompatActivity implements ExerciseInRoutineRe
                         }
                     });
         }
-        Intent myRoutinesPage = new Intent( NewRoutine.this, MyRoutines.class);
-        startActivity(myRoutinesPage);
     } // END addRoutine()
 
     private void setUpView(){

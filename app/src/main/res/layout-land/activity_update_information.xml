@@ -21,12 +21,11 @@
         android:id="@+id/editTextViewHeightInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:hint="@string/centimeters_editTextHint"
         android:importantForAutofill="no"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHeight"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintStart_toEndOf="@+id/textViewHeight"
         app:layout_constraintTop_toTopOf="@+id/textViewHeight" />
 
@@ -36,9 +35,8 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/weight_textView"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInformation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHeight" />
 
@@ -46,29 +44,35 @@
         android:id="@+id/editTextViewWeightInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:hint="@string/kilograms_editText"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewWeight"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintStart_toEndOf="@+id/textViewWeight"
         app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
 
     <Button
         android:id="@+id/buttonUpdateInformation"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_main"
+        android:inputType="numberDecimal"
         android:onClick="onUpdateInformation"
         android:text="@string/updateStatus_button"
-        android:inputType="numberDecimal"
-        android:background="@drawable/button_main"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline18"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

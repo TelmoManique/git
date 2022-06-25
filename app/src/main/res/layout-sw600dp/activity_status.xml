@@ -12,14 +12,13 @@
         android:id="@+id/fragment_container_view_status"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWeightInfo"
+        app:layout_constraintTop_toTopOf="@+id/guideline17"
         android:name="com.miniprojeto.telmomanique.fitnessexercisetracking.fragments.GeneralStatusFragment"
         tools:layout="@layout/fragment_general_status" />
 
@@ -27,10 +26,13 @@
     <TextView
         android:id="@+id/textViewWeight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/weight_textView"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewWeightInfo"
         app:layout_constraintEnd_toStartOf="@+id/textViewHeight"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,53 +41,63 @@
     <TextView
         android:id="@+id/textViewWeightInfo"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:text=""
+        android:textSize="64sp"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_container_view_status"
         app:layout_constraintEnd_toEndOf="@+id/textViewWeight"
         app:layout_constraintStart_toStartOf="@+id/textViewWeight"
-        app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeight" />
 
     <TextView
         android:id="@+id/textViewHeight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:text="@string/height_textView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewWeight"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeight"
         app:layout_constraintEnd_toStartOf="@+id/textViewBMI"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewWeight" />
+        app:layout_constraintStart_toEndOf="@+id/textViewWeight"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
 
     <TextView
         android:id="@+id/textViewHeightInfo"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
         android:text=""
+        android:textSize="64sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeightInfo"
         app:layout_constraintEnd_toEndOf="@+id/textViewHeight"
         app:layout_constraintStart_toStartOf="@+id/textViewHeight"
-        app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
+        app:layout_constraintTop_toTopOf="@+id/textViewWeightInfo" />
 
     <TextView
         android:id="@+id/textViewBMI"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/bmi_textview"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewWeight"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewHeight" />
+        app:layout_constraintStart_toEndOf="@+id/textViewHeight"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
 
     <TextView
         android:id="@+id/textViewBMIInfo"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
         android:text=""
+        android:textSize="64sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeightInfo"
         app:layout_constraintEnd_toEndOf="@+id/textViewBMI"
         app:layout_constraintStart_toStartOf="@+id/textViewBMI"
-        app:layout_constraintTop_toTopOf="@+id/textViewBMI" />
+        app:layout_constraintTop_toTopOf="@+id/textViewWeightInfo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -98,11 +110,12 @@
         android:id="@+id/buttonMoreStat"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/button_main"
         android:onClick="onMoreStats"
         android:text="@string/moreStats_textView"
         android:textColor="@color/white"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonUpdateInfo"
         app:layout_constraintEnd_toStartOf="@+id/buttonGeneralInfo"
         app:layout_constraintHorizontal_bias="0.5"
@@ -113,11 +126,12 @@
         android:id="@+id/buttonGeneralInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/button_main"
         android:onClick="onGeneralInfo"
         android:text="@string/generalInfo_textView"
         android:textColor="@color/white"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonMoreStat"
         app:layout_constraintEnd_toStartOf="@+id/buttonWeightProg"
         app:layout_constraintHorizontal_bias="0.5"
@@ -128,30 +142,38 @@
         android:id="@+id/buttonWeightProg"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/button_main"
         android:onClick="onWeight"
         android:text="@string/weightProg_textView"
         android:textColor="@color/white"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonMoreStat"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_container_view_status"
         app:layout_constraintStart_toEndOf="@+id/buttonGeneralInfo"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <Button
         android:id="@+id/buttonUpdateInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_main"
         android:onClick="onUpdateInfo"
         android:text="@string/updatePersonal_textView"
         android:textColor="@color/white"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_container_view_status"
+        app:layout_constraintStart_toStartOf="@+id/fragment_container_view_status"
         app:layout_constraintTop_toBottomOf="@+id/buttonMoreStat" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

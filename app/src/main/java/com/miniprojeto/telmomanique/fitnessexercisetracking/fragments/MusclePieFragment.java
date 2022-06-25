@@ -100,8 +100,8 @@ public class MusclePieFragment extends Fragment {
                                     e.setReps( Math.toIntExact(document.getLong("reps")));
                                     e.setTime( Math.toIntExact(document.getLong("time")));
                                     e.setWeight( Math.toIntExact(document.getLong("weight")));
-                                    e.setMuscleGroup( document.getString("exerciseType") );
-                                    e.setExerciseType( document.getString("muscleGroup"));
+                                    e.setMuscleGroup( document.getString("muscleGroup") );
+                                    e.setExerciseType( document.getString("exerciseType"));
                                     r.addExercise(e);
                                 }
                                 addRoutine( r );

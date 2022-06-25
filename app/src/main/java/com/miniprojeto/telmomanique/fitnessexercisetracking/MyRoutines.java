@@ -22,6 +22,8 @@ import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.RoutineLis
 import com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers.RoutineListRecyclerViewInterface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyRoutines extends AppCompatActivity implements RoutineListRecyclerViewInterface {
     private String TAG = "DEBUG_MYROUTINES";
@@ -29,6 +31,7 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
     private Firebase firebase;
     private User u;
     private ArrayList<Routine> routines = new ArrayList<Routine>();
+    private ArrayList<String> locations = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +45,22 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         }
 
         u = firebase.getUser();
-
-        getAllRoutines();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAllRoutines();
         setUpView();
     }
 
     private void getAllRoutines(){
+        routines = new ArrayList<>();
         firebase.getRoutinesCollection().document( "users" ).collection( u.getId() ).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -65,7 +72,6 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
                                 routines.add( document );
                                 Log.d(TAG, "" + document.getId());
                             }
-                            //TODO ADD LOCATION
                             parseRoutines( routines );
 
                         } else {
@@ -79,6 +85,7 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
         for( QueryDocumentSnapshot documents : routines ){
             Routine r = new Routine();
             r.setDate( documents.getId().toString() );
+            r.setLocation( documents.get("location").toString());
 
             firebase.getRoutinesCollection().document( "users" ).collection( u.getId() ).document( r.getDate() ).collection( "exercises" ).get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -115,7 +122,6 @@ public class MyRoutines extends AppCompatActivity implements RoutineListRecycler
             Log.d(TAG, "e.weight: " + e.getWeight());
             Log.d(TAG, "e.time: " + e.getTime());
         }
-        //TODO ADD ROUTINE TO SCREEN
         setUpView();
     } // END addRoutine()
 

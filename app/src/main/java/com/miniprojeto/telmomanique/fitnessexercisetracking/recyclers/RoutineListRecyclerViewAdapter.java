@@ -1,6 +1,8 @@
 package com.miniprojeto.telmomanique.fitnessexercisetracking.recyclers;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.R;
 import com.miniprojeto.telmomanique.fitnessexercisetracking.objects.Routine;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class RoutineListRecyclerViewAdapter extends RecyclerView.Adapter<RoutineListRecyclerViewAdapter.MyViewHolder> {
     private Context context;
@@ -40,8 +45,16 @@ public class RoutineListRecyclerViewAdapter extends RecyclerView.Adapter<Routine
         holder.muscleView.setText( routineList.get( position ).getMostExercised());
         holder.typeView.setText( routineList.get( position ).getMostType() );
         //TODO TRANSFORM IN GEOLOCATION AND GET CITY , STREET
-        holder.locationView.setText( "locationView");//routineList.get( position ).getCity() );
-
+        String location = routineList.get( position ).getLocation();
+        String []ll = location.split(",");
+        Geocoder gcd = new Geocoder(context, Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = gcd.getFromLocation(Double.parseDouble(ll[0]), Double.parseDouble(ll[1]), 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        holder.locationView.setText( addresses.get(0).getLocality());
     }
 
     @Override
